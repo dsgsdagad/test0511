@@ -1,0 +1,27 @@
+# .github/gitflows/main.yml
+name: Mirror to Gitee test0511
+
+on: [ push, delete, create ]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Config private key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Clone test0511 and push
+        env:
+          SRC_REPO: "https://github.com/dsgsdagad/test0511.git"
+          DIST_REPO: "git@gitee.com:quettabyte/test0511.git"
+        run: |
+          git clone --mirror "$SRC_REPO"
+          cd `basename "$SRC_REPO"`
+          git remote set-url --push origin "$DIST_REPO"
+          git push --mirror
