@@ -21,6 +21,8 @@ jobs:
           SRC_REPO: "https://github.com/dsgsdagad/test0511.git"
           DIST_REPO: "git@gitee.com:quettabyte/test0511.git"
         run: |
+          git config --global user.name "quettabyte"
+          git config --global user.email "quettabyte@163.com"
           git clone --mirror "$SRC_REPO"
           cd `basename "$SRC_REPO"`
           git remote set-url --push origin "$DIST_REPO"
