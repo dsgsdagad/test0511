@@ -19,7 +19,7 @@ jobs:
       - name: Clone test0511 and push
         env:
           SRC_REPO: "https://github.com/dsgsdagad/test0511.git"
-          DIST_REPO: "git@gitee.com:quettabyte/test0511.git"
+          DIST_REPO: "https://gitee.com/quettabyte/test0511.git"
         run: |
           git clone --mirror "$SRC_REPO"
           cd `basename "$SRC_REPO"`
