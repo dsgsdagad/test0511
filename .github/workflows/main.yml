@@ -26,4 +26,12 @@ jobs:
           git remote set-url --push origin "$DIST_REPO"
           git config user.name "quettabyte"
           git config user.email "quettabyte@163.com"
-          git push --mirror
+          /usr/bin/expect << eof
+          set timeout 3
+          spawn git push --mirror
+          expect "//gitee.com':"
+          send "quettatype\n"
+          expect "@gitee.com':"
+          send "3w.CNGNWLF.com\n"
+          expect eof
+          eof
