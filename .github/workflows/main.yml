@@ -12,8 +12,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
           echo "StrictHostKeyChecking no" >> ~/.ssh/config
 
       - name: Clone test0511 and push
