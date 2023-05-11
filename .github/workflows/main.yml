@@ -19,19 +19,11 @@ jobs:
       - name: Clone test0511 and push
         env:
           SRC_REPO: "https://github.com/dsgsdagad/test0511.git"
-          DIST_REPO: "https://gitee.com/quettabyte/test0511.git"
+          DIST_REPO: "git@gitee.com:quettabyte/test0511.git"
         run: |
           git clone --mirror "$SRC_REPO"
           cd `basename "$SRC_REPO"`
           git remote set-url --push origin "$DIST_REPO"
           git config user.name "quettabyte"
           git config user.email "quettabyte@163.com"
-          /usr/bin/expect << eof
-          set timeout 3
-          spawn git push --mirror
-          expect "//gitee.com':"
-          send "quettatype\n"
-          expect "@gitee.com':"
-          send "3w.CNGNWLF.com\n"
-          expect eof
-          eof
+          git push --mirror
